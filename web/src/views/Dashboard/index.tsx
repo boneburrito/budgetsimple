@@ -1,7 +1,11 @@
 import React from 'react';
 
+import Layout from 'features/Layout';
+
 const DashboardView: React.FunctionComponent = () => (
-  <div className="layout-view"><h1>Dashboard</h1></div>
+  <Layout>
+    <div className="layout-view"><h1>Dashboard</h1></div>
+  </Layout>
 );
 
 export default DashboardView;
