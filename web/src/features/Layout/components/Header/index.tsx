@@ -1,20 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { useResolvedPath, Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 interface LayoutHeaderProps {}
 
+const MAINNAV_ITEMS = [
+  { id: 'home', path: '/', text: 'Home' },
+  { id: 'transactions', path: '/transactions', text: 'Transactions' },
+  { id: 'settings', path: '/settings', text: 'Settings' }
+];
+
 const LayoutHeader = React.memo<LayoutHeaderProps>(() => {
+  const resolvedPath = useResolvedPath('/');
+
+  console.log('resolvedPath', resolvedPath);
+
+  const items = useMemo(() => MAINNAV_ITEMS.map(
+    (item) => (
+      <li key={item.id} className={classNames('layout-header-nav-item', { '--selected': item.path === resolvedPath.pathname })}>
+        <Link className="layout-header-nav-link" to={item.path}>{item.text}</Link>
+      </li>
+    )
+  ), [resolvedPath]);
+
   return (
     <div className="layout-header">
       <nav className="layout-header-nav">
         <ul>
-          <li className="layout-header-nav-item">
-            <Link className="layout-header-nav-link" to="/">Home</Link>
-          </li>
-
-          <li className="layout-header-nav-item">
-            <Link className="layout-header-nav-link" to="/envelopes">Envelopes</Link>
-          </li>
+          {items}
         </ul>
       </nav>
     </div>

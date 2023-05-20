@@ -1,0 +1,101 @@
+.-flex {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-md);
+  min-width: 0;
+}
+
+.-flex.--inline {
+  display: inline-flex;
+}
+
+.-flex.--reverse {
+  flex-direction: row-reverse;
+}
+
+.-flex.--wrap {
+  flex-wrap: wrap;
+}
+
+.-flex.--column {
+  flex-direction: column;
+  height: 100%;
+}
+
+.-flex.--column.--reverse {
+  flex-direction: column-reverse;
+}
+
+.-flex.--center {
+  align-items: center;
+}
+
+.-flex.--baseline {
+  align-items: baseline;
+}
+
+.-flex.--start {
+  align-items: start;
+}
+
+.-flex.--end {
+  align-items: end;
+}
+
+/* Gap spacing */
+.-flex.--space-none {
+  gap: 0;
+}
+
+.-flex.--space-xs {
+  gap: var(--spacing-xs);
+}
+
+.-flex.--space-sm {
+  gap: var(--spacing-sm);
+}
+
+.-flex.--space-lg {
+  gap: var(--spacing-lg);
+}
+
+.-flex.--space-xl {
+  gap: var(--spacing-xl);
+}
+
+.-flex.--space-x-xs {
+  column-gap: var(--spacing-xs);
+}
+
+.-flex.--space-x-sm {
+  column-gap: var(--spacing-sm);
+}
+
+.-flex.--space-x-lg {
+  column-gap: var(--spacing-lg);
+}
+
+.-flex.--space-x-xl {
+  column-gap: var(--spacing-xl);
+}
+
+.-flex.--space-y-xs {
+  row-gap: var(--spacing-xs);
+}
+
+.-flex.--space-y-sm {
+  row-gap: var(--spacing-sm);
+}
+
+.-flex.--space-y-lg {
+  row-gap: var(--spacing-lg);
+}
+
+.-flex.--space-y-xl {
+  row-gap: var(--spacing-xl);
+}
+
+.-stretch {
+  flex: 1;
+  min-width: 0;
+}

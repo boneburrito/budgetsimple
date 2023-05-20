@@ -25,11 +25,12 @@
   display: inline-block;
   padding: 1em 2em;
   font-size: 0.9em;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-heavy);
   color: var(--theme-color-secondary-100);
 }
 .layout-header-nav-link:hover,
-.layout-header-nav-link:focus {
+.layout-header-nav-link:focus,
+.layout-header-nav-item.--selected .layout-header-nav-link {
   background-color: var(--theme-color-secondary-600);
 }
 .layout-header-nav-link:active {

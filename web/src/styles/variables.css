@@ -1,8 +1,82 @@
 :root {
+  --base-font-size: 16px;
+
+  --size-fixed-2: 0.125rem;   /*   2px  */
+  --size-fixed-4: 0.25rem;    /*   4px  */
+  --size-fixed-8: 0.5rem;     /*   8px  */
+  --size-fixed-12: 0.75rem;   /*  12px  */
+  --size-fixed-14: 1rem;      /*  16px  */
+  --size-fixed-20: 1.25rem;   /*  20px  */
+  --size-fixed-28: 2rem;      /*  32px  */
+  --size-fixed-32: 2.5rem;    /*  40px  */
+  --size-fixed-48: 3rem;      /*  48px  */
+
+  --size-rel-2: 0.125rem;     /*   ~2px  */
+  --size-rel-4: 0.25rem;      /*   ~4px  */
+  --size-rel-8: 0.5rem;       /*   ~8px  */
+  --size-rel-12: 0.75rem;     /*  ~12px  */
+  --size-rel-14: 1rem;        /*  ~16px  */
+  --size-rel-20: 1.25rem;     /*  ~20px  */
+  --size-rel-28: 2rem;        /*  ~32px  */
+  --size-rel-32: 2.5rem;      /*  ~40px  */
+  --size-rel-48: 3rem;        /*  ~48px  */
+
+  --spacing-fixed-xxs: var(--size-fixed-4);   /*   4px  */
+  --spacing-fixed-xs: var(--size-fixed-8);    /*   8px  */
+  --spacing-fixed-sm: var(--size-fixed-12);   /*  12px  */
+  --spacing-fixed-md: var(--size-fixed-20);   /*  20px  */
+  --spacing-fixed-lg: var(--size-fixed-32);   /*  32px  */
+  --spacing-fixed-xl: var(--size-fixed-40);   /*  40px  */
+  --spacing-fixed-xxl: var(--size-fixed-48);  /*  48px  */
+
+  --spacing-micro: var(--size-rel-2);         /*   ~2px  */
+  --spacing-xxs: var(--size-rel-4);           /*   ~4px  */
+  --spacing-xs: var(--size-rel-8);            /*   ~8px  */
+  --spacing-sm: var(--size-rel-12);           /*  ~12px  */
+  --spacing-md: var(--size-rel-20);           /*  ~20px  */
+  --spacing-lg: var(--size-rel-32);           /*  ~32px  */
+  --spacing-xl: var(--size-rel-40);           /*  ~40px  */
+  --spacing-xxl: var(--size-rel-48) ;         /*  ~48px  */
+
+  --font-size-fixed-xxs: 0.625rem;          /*  10px  */
+  --font-size-fixed-xs: 0.75rem;            /*  12px  */
+  --font-size-fixed-sm: 0.875rem;           /*  14px  */
+  --font-size-fixed-md: 1rem;               /*  16px  */
+  --font-size-fixed-lg: 1.25rem;            /*  20px  */
+  --font-size-fixed-xl: 1.5rem;             /*  24px  */
+  --font-size-fixed-xxl: 2rem;              /*  32px  */
+  --font-size-fixed-xxxl: 3rem;             /*  48px  */
+
+  --font-size-xxs: 0.625em;          /*  10px  */
+  --font-size-xs: 0.75em;            /*  12px  */
+  --font-size-sm: 0.875em;           /*  14px  */
+  --font-size-md: 1em;               /*  16px  */
+  --font-size-lg: 1.25em;            /*  20px  */
+  --font-size-xl: 1.5em;             /*  24px  */
+  --font-size-xxl: 2em;              /*  32px  */
+  --font-size-xxxl: 3em;             /*  48px  */
+
+  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-semibold: 500;
   --font-weight-bold: 600;
+  --font-weight-heavy: 700;
 
+  --border-radius-sm: var(--spacing-micro);
+  --border-radius-md: var(--spacing-xxs);
+  --border-radius-lg: var(--spacing-sm);
+  --border-radius-xl: var(--spacing-md);
+
+  --shadow-sm: 4px 4px 3px rgba(0, 0, 0, 0.03);
+  --shadow-md: 6px 6px 5px rgba(0, 0, 0, 0.04);
+  --shadow-md-high: 8px 8px 9px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 12px 12px 14px rgba(0, 0, 0, 0.06);
+  --shadow-rev-sm: -4px 4px 3px rgba(0, 0, 0, 0.03);
+  --shadow-rev-md: -6px 6px 5px rgba(0, 0, 0, 0.04);
+  --shadow-rev-md-high: -8px 8px 9px rgba(0, 0, 0, 0.06);
+  --shadow-rev-lg: -12px 12px 14px rgba(0, 0, 0, 0.06);
+
+  /* Theme */
   --theme-color-bg: #f0f0f0;
 
   --theme-color-grey-100: #dadede;
@@ -43,4 +117,7 @@
   --theme-color-danger-700: #651e13;
   --theme-color-danger-800: #330f09;
   --theme-color-danger: var(--theme-color-danger-500);
+
+  --theme-color-border: var(--theme-color-grey-200);
+  --forest-theme-color-link: var(--theme-color-primary-500);
 }
