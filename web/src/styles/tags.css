@@ -1,0 +1,62 @@
+.tag {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1ch;
+  padding: 0 1em;
+  height: 2em;
+  min-width: calc(1ch + 1.2em);
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  border-radius: 1em;
+  background-color: var(--theme-color-grey-100);
+  color: var(--theme-color-grey-600);
+}
+
+.tag > span {
+  font-size: 0.8em;
+}
+
+/* Sizes */
+.tag.--sm {
+  padding-inline: 0.8em;
+  height: 1.75em;
+  font-size: var(--font-size-sm);
+}
+
+.tag.--lg {
+  padding-inline: 1.25em;
+  font-size: var(--font-size-lg);
+}
+
+/* Shapes */
+.tag.--pill {
+  border-radius: 1em;
+}
+
+.tag.--rectangle {
+  border-radius: var(--border-radius-md);
+}
+.tag.--round {
+  padding-inline: 0.8em;
+  border-radius: 50%;
+  min-width: calc(1ch + 0.5em);
+}
+
+/* Styles */
+.tag.--primary {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-primary-fg);
+}
+
+.tag.--secondary {
+  background-color: var(--theme-color-secondary);
+  color: var(--theme-color-secondary-fg);
+}
+
+.tag.--danger {
+  background-color: var(--theme-color-danger);
+  color: var(--theme-color-danger-fg);
+}

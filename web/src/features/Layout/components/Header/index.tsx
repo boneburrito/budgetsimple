@@ -7,13 +7,12 @@ interface LayoutHeaderProps {}
 const MAINNAV_ITEMS = [
   { id: 'home', path: '/', text: 'Home' },
   { id: 'transactions', path: '/transactions', text: 'Transactions' },
-  { id: 'settings', path: '/settings', text: 'Settings' }
+  { id: 'settings', path: '/settings', text: 'Settings' },
+  { id: 'patterns', path: '/patterns', text: 'Patterns' }
 ];
 
 const LayoutHeader = React.memo<LayoutHeaderProps>(() => {
   const resolvedPath = useResolvedPath('/');
-
-  console.log('resolvedPath', resolvedPath);
 
   const items = useMemo(() => MAINNAV_ITEMS.map(
     (item) => (

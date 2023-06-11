@@ -6,7 +6,6 @@ import Dashboard from './views/Dashboard';
 import './App.css';
 
 function App() {
-
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />

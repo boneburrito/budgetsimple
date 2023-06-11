@@ -62,6 +62,9 @@
   --font-weight-bold: 600;
   --font-weight-heavy: 700;
 
+  --font-family: 'Quicksand';
+  --font-family-mono: 'Source Code Pro';
+
   --border-radius-sm: var(--spacing-micro);
   --border-radius-md: var(--spacing-xxs);
   --border-radius-lg: var(--spacing-sm);

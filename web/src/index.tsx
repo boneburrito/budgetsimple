@@ -4,11 +4,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './styles/index.css';
 import App from './App';
+import PatternsView from './views/Patterns';
+import ErrorView from './views/Error';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([{
   path: '/',
-  element: <App />
+  element: <App />,
+  errorElement: <ErrorView />
+}, {
+  path: '/patterns',
+  element: <PatternsView />
 }]);
 
 const root = ReactDOM.createRoot(
