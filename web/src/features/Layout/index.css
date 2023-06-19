@@ -30,7 +30,7 @@
 }
 .layout-header-nav-link:hover,
 .layout-header-nav-link:focus,
-.layout-header-nav-item.--selected .layout-header-nav-link {
+.layout-header-nav-link.--selected {
   background-color: var(--theme-color-secondary-600);
 }
 .layout-header-nav-link:active {
@@ -40,4 +40,11 @@
 .layout-body {
   flex: 1;
   padding: 2em;
+}
+
+.layout-section {
+  padding: 1.5em;
+  border-radius: 1.5em;
+  background-color: var(--theme-color-bg);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
 }

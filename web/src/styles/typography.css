@@ -1,9 +1,23 @@
-.heading-1 { font-size: var(--font-size-fixed-xxxl); }
-.heading-2 { font-size: var(--font-size-fixed-xxl); }
-.heading-3 { font-size: var(--font-size-fixed-xl); }
-.heading-4 { font-size: var(--font-size-fixed-lg); }
-.heading-5 { font-size: var(--font-size-fixed-md); }
-.heading-6 { font-size: var(--font-size-fixed-sm); }
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.heading-1 { font-size: var(--font-size-fixed-xxl); }
+.heading-2 { font-size: var(--font-size-fixed-xl); }
+.heading-3 { font-size: var(--font-size-fixed-lg); }
+.heading-4 { font-size: var(--font-size-fixed-md); }
+.heading-5 { font-size: var(--font-size-fixed-sm); }
+.heading-6 { font-size: var(--font-size-fixed-xs); }
 
 .-text-sm { font-size: var(--font-size-sm); }
 .-text-md { font-size: var(--font-size-md); }
@@ -41,10 +55,10 @@
 }
 
 .-code {
-  padding: 1px 2px;
+  padding: 0.1em 0.33em;
   font-size: var(--font-size-sm);
-  font-family: var(--font-family-monospace);
-  border-radius: var(--border-radius-sm);
+  font-family: var(--font-family-mono);
+  border-radius: var(--border-radius-md);
   background-color: var(--theme-color-grey-200);
   color: var(--theme-color-grey-800);
 }
