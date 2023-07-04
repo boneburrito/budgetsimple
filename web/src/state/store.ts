@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import testReducer from './test/reducer';
+import colorsReducer from './colors/reducer';
 
 export const store = configureStore({
   reducer: {
-    test: testReducer,
+    colors: colorsReducer,
   },
 });
 

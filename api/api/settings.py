@@ -34,6 +34,7 @@ CORS_ALLOWED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "bonebudget",
     "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -83,9 +84,11 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "bonedata",
         "HOST": "localhost",
-        "PORT": 5434,
+        "PORT": 5432,
     }
 }
+
+MIGRATIONS_MODULE = "bonebudget"
 
 
 # Password validation
