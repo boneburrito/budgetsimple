@@ -27,10 +27,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Application definition
 
 INSTALLED_APPS = [
+    "bonebudget",
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -79,9 +85,10 @@ DATABASES = {
         "NAME": "bonedata",
         "HOST": "localhost",
         "PORT": 5432,
-
     }
 }
+
+MIGRATIONS_MODULE = "bonebudget"
 
 
 # Password validation

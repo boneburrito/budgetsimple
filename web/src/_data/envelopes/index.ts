@@ -18,7 +18,7 @@ export const ENVELOPES: Envelope[] = [
     updated_at: new Date(Date.now()).getTime(),
   },
   {
-    id: 'envelope-2',
+    id: 'envelope-3',
     title: 'Housing',
     description: 'Everyone needs shelter',
     balance: 0.0,
