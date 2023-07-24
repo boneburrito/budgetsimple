@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework import permissions  # authenticated users only
 from .models import Transaction, Colors
 from .serializers import TransactionSerializer
+from datetime import datetime
 
 
 def index(request):
@@ -25,7 +26,7 @@ class TransactionView(APIView):
         """
         List all the transaction items for a given requested user
         """
-        transactions = Transaction.objects.filter(user_id=request.data.get('user_id'))
+        transactions = Transaction.objects.filter(user_id=request.user.id)
         serializer = TransactionSerializer(transactions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -37,7 +38,10 @@ class TransactionView(APIView):
             'description': request.data.get('description'),
             'is_credit': request.data.get('is_credit'),
             'amount': request.data.get('amount'),
-            'user_id': request.data.get('user_id')
+            'transaction_type': request.data.get('transaction_type'),
+            'status': request.data.get('status'),
+            'user_id': request.user.id,
+            'posted_date': datetime.now().date()
         }
         serializer = TransactionSerializer(data=data)
         if serializer.is_valid():
