@@ -1,0 +1,16 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--theme-color-grey-100);
+}
+
+.login-card {
+  width: 40rem;
+  max-width: 90%;
+  border-radius: var(--border-radius-lg);
+  background-color: #fff;
+  box-shadow: var(--shadow-md);
+}

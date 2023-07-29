@@ -30,6 +30,7 @@ export interface RequestOptions {
   expires?: number;
   method?: Request['method'];
   params?: { [key in string]: SerializableValue } | null,
+  token?: string;
   url: string;
 }
 
@@ -45,6 +46,6 @@ export interface SimpleResponse {
 export type ResponseTuple = [ResponseData | null, SimpleResponse | null];
 
 export interface APISettings {
-  key?: string;
+  token?: string;
   url: string;
 }

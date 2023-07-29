@@ -4,6 +4,7 @@ import type { APISettings, RequestOptions, RequestOptionsValidated, ResponseTupl
 
 let API_SETTINGS: APISettings = {
   url: 'http://localhost:8000',
+  token: sessionStorage?.getItem('api-token') ?? undefined,
 };
 
 function getQueryParams(options: RequestOptions) {
@@ -18,11 +19,17 @@ export function setSettings(settings: APISettings) {
   }
 }
 
+export function setToken(token: string) {
+  API_SETTINGS.token = token;
+  sessionStorage?.setItem('api-token', token);
+}
+
 const getOptions = (optionsMixed: RequestOptions | string): RequestOptionsValidated => {
   if (typeof optionsMixed === 'string') {
     return {
       expires: 0,
       method: 'GET',
+      token: API_SETTINGS.token,
       url: optionsMixed,
     };
   }
@@ -30,6 +37,7 @@ const getOptions = (optionsMixed: RequestOptions | string): RequestOptionsValida
   return {
     expires: 0,
     method: 'GET',
+    token: API_SETTINGS.token,
     ...optionsMixed,
   };
 };
@@ -37,11 +45,15 @@ const getOptions = (optionsMixed: RequestOptions | string): RequestOptionsValida
 export const request = async (optionsMixed: RequestOptions | string): Promise<ResponseTuple> => {
   if (!API_SETTINGS.url) throw new Error('API settings aren\'t available');
 
-  let options: RequestOptionsValidated = getOptions(optionsMixed);
+  const options: RequestOptionsValidated = getOptions(optionsMixed);
 
-  const paramsString = getQueryParams(options);
+  let paramsString = '';
+  
+  if (options.method === 'GET' && options.params && Object.keys(options.params).length) {
+    paramsString = `?${getQueryParams(options)}`;
+  }
 
-  options.url = `${API_SETTINGS.url}/${options.url}?${paramsString}`;
+  options.url = `${API_SETTINGS.url}/${options.url}${paramsString}`;
 
   const [data, response] = await cachedXHR(options);
 
@@ -60,6 +72,18 @@ export const request = async (optionsMixed: RequestOptions | string): Promise<Re
 
 export const requestGet = async (path: string, params?: RequestOptions['params']) => await request({
   method: 'GET',
+  params: params,
+  url: path
+});
+
+export const requestPost = async (path: string, params?: RequestOptions['params']) => await request({
+  method: 'POST',
+  params: params,
+  url: path
+});
+
+export const requestPut = async (path: string, params?: RequestOptions['params']) => await request({
+  method: 'PUT',
   params: params,
   url: path
 });

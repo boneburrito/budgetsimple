@@ -59,12 +59,24 @@ const cachedRequest = (options: RequestOptionsValidated): Promise<ResponseTuple>
 
     const info: RequestInit = {
       method: options.method,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': options.token ? `Token ${options.token}` : '',
+      }
     };
+
+    if (options.params && (options.method === 'POST' || options.method === 'PUT')) {
+      info.body = JSON.stringify(options.params);
+    }
   
     fetch(options.url, info).then((response) => {
       getResponseBody(response).then((data) => {
-        const cacheData = setCacheValue(cacheKey, { data, expires: options.expires, response });
-        resolve([data, getSimpleResponse(cacheData.response)]);
+        if (options.method === 'GET') {
+          const cacheData = setCacheValue(cacheKey, { data, expires: options.expires, response });
+          resolve([data, getSimpleResponse(cacheData.response)]);
+        } else {
+          resolve([data, getSimpleResponse(response)]);
+        }
       });
     }).catch((error) => {
       const cacheData: CacheValue = {

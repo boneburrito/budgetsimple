@@ -35,7 +35,9 @@ CORS_ALLOWED_ORIGINS = [
 
 INSTALLED_APPS = [
     "rest_framework",
+    "rest_framework.authtoken",
     "transactions",
+    "users",
     "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -55,6 +57,12 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+AUTH_USER_MODEL = "users.User"
+
+AUTHENTICATION_BACKENDS = ["users.backends.AuthBackend"]
+
+# SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 ROOT_URLCONF = "api.urls"
 
@@ -85,11 +93,11 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "budgetsimple",
         "HOST": "localhost",
-        "PORT": 5432,
+        "PORT": 5434,
     }
 }
 
-MIGRATIONS_MODULE = "transactions"
+MIGRATIONS_MODULE = "users"
 
 
 # Password validation

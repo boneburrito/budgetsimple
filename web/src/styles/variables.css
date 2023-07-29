@@ -121,6 +121,6 @@
   --theme-color-danger-800: #330f09;
   --theme-color-danger: var(--theme-color-danger-500);
 
-  --theme-color-border: var(--theme-color-grey-200);
+  --theme-color-border: var(--theme-color-grey-100);
   --forest-theme-color-link: var(--theme-color-primary-500);
 }

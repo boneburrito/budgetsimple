@@ -1,10 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-
 import uuid
+from users.models import User
 
 # Create your models here.
-
 
 class Colors(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -17,12 +15,6 @@ class Colors(models.Model):
     
     def __str__(self):
         return self.name
-
-
-class User(AbstractUser):
-    pass
-
-
 class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
