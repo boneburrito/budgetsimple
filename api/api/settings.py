@@ -34,6 +34,7 @@ CORS_ALLOWED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "rest_framework",
     "bonebudget",
     "corsheaders",
     "django.contrib.admin",

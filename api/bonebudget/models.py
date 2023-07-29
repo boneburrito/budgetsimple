@@ -5,6 +5,7 @@ import uuid
 
 # Create your models here.
 
+
 class Colors(models.Model):
     name = models.CharField(max_length=100, default='')
     hex = models.CharField(max_length=6, default='')
@@ -17,8 +18,10 @@ class Colors(models.Model):
     def __str__(self):
         return self.name
 
+
 class User(AbstractUser):
     pass
+
 
 class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
