@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from bonebudget import urls as transaction_urls
+from transactions import urls as transaction_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("bonebudget/", include("bonebudget.urls")),
+    path("transactions/", include("transactions.urls")),
     path('api-auth/', include('rest_framework.urls')),
     path('transactions/', include(transaction_urls)),
 ]

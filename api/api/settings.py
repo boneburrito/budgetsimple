@@ -35,7 +35,7 @@ CORS_ALLOWED_ORIGINS = [
 
 INSTALLED_APPS = [
     "rest_framework",
-    "bonebudget",
+    "transactions",
     "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -83,13 +83,13 @@ WSGI_APPLICATION = "api.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "bonedata",
+        "NAME": "budgetsimple",
         "HOST": "localhost",
         "PORT": 5432,
     }
 }
 
-MIGRATIONS_MODULE = "bonebudget"
+MIGRATIONS_MODULE = "transactions"
 
 
 # Password validation
@@ -133,4 +133,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "bonebudget.User"
+AUTH_USER_MODEL = "transactions.User"
