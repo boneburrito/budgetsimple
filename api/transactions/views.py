@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import permissions  # authenticated users only
@@ -20,6 +21,7 @@ def colors(request):
 
 class TransactionView(APIView):
     # add permission to check if user is authenticated
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
@@ -54,6 +56,7 @@ class TransactionView(APIView):
 
 class TransactionDetailView(APIView):
     # add permission to check if user is authenticated
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, transaction_id, user_id):

@@ -4,15 +4,28 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './styles/index.css';
 import App from './App';
-import LoginView from './views/Login';
-import SignupView from './views/Signup';
 import ErrorView from './views/Error';
+import LoginView from './views/Login';
+import Patterns from './views/Patterns';
+import SignupView from './views/Signup';
+import Transactions from './views/Transactions';
+
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([{
   path: '/',
   element: <App />,
   errorElement: <ErrorView />,
+  children: [
+    {
+      path: '/patterns',
+      element: <Patterns />
+    },
+    {
+      path: '/transactions',
+      element: <Transactions />
+    },
+  ],
 }, {
   path: '/signup',
   element: <SignupView />

@@ -7,6 +7,7 @@ import { requestGet } from 'utils/request';
 
 import Dashboard from './views/Dashboard';
 import Patterns from './views/Patterns';
+import Transactions from './views/Transactions';
 
 import './App.css';
 
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/patterns" element={<Patterns />} />
+        <Route path="/transactions" element={<Transactions />} />
       </Routes>
     </Provider>
   );

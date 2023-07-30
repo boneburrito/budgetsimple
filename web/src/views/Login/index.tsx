@@ -18,7 +18,7 @@ const Login = React.memo(() => {
     const password = passwordRef.current?.value;
 
     if (email && password) {
-      requestPost('api-token-auth/', { username: email, password })
+      requestPost('users/api-token-auth/', { username: email, password })
         .then(([data]) => {
           if (data?.type === 'object' && data?.value['token']) {
             const token = data.value['token'];

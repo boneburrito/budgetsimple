@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { requestGet, requestPut } from 'utils/request';
+import { requestGet, requestPost, setToken } from 'utils/request';
 
 import './index.css';
 
@@ -8,29 +9,24 @@ const Signup = React.memo(() => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    requestGet('users/me/').then(([data]) => {
-      console.log('Me sessions', data);
-    }).catch((error) => {
-      console.error('Me session error', error);
-    });
-  }, []);
+  const navigate = useNavigate();
 
   const handleSubmit = useCallback(() => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
     if (email && password) {
-      requestPut('users/register/', { email, password })
+      requestPost('users/register/', { username: email, email, password })
         .then(([data]) => {
-          console.log('Signup complete', data);
-          // Set session
+          if (data?.type === 'object' && typeof data?.value['id'] === 'string') {
+            navigate('/login');
+          }
         })
         .catch((error) => {
           console?.error('Error on signup', error);
         });
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="signup">

@@ -13,7 +13,6 @@ from .serializers import RegisterSerializer
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
-    # permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
 class MeView(APIView):
@@ -23,7 +22,7 @@ class MeView(APIView):
     def get(self, request, format=None):
         content = {
             'user': request.user.id,  # `django.contrib.auth.User` instance.
-            # 'auth': str(request.auth),  # None
+            'auth': str(request.auth),  # None
         }
         return Response(content)
     

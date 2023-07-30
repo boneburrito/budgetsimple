@@ -15,6 +15,7 @@ class Colors(models.Model):
     
     def __str__(self):
         return self.name
+
 class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
