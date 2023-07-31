@@ -10,6 +10,7 @@ export interface JsonObject {
 export type JsonArray = JsonObject[];
 
 export const isJsonObject = (data: any): data is JsonObject => 
-  typeof data === 'object' && Object.values(data).every((value) => JSON_VALUE_TYPE_NAMES_S.includes(typeof value));
+  String(data) === '[object Object]' && 
+  Object.values(data).every((value) => JSON_VALUE_TYPE_NAMES_S.includes(typeof value));
 
 export const isJsonArray = (data: any): data is JsonArray => Array.isArray(data) && data.every(isJsonObject);
