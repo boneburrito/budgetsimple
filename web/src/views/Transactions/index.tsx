@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'state';
 import { getTransactions } from 'state/transactions';
 
 import Layout from 'features/Layout';
-import Envelopes from 'features/Envelopes/OverviewList';
 
-const DashboardView: React.FunctionComponent = () => {
+const TransactionsView: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,20 +17,16 @@ const DashboardView: React.FunctionComponent = () => {
   return (
     <Layout>
       <div className="layout-view">
-        <h1>Envelopes</h1>
+        <h1>Transactions</h1>
 
         <div className="-offset">
           <ul>
-            {transactions.map(({ id, description }) => (<li key={id}>{description}</li>))}
+            {transactions.map((t) => (<li key={t.id}>${t.amount.toFixed(2)} - {t.description}</li>))}
           </ul>
-        </div>
-
-        <div className="-offset">
-          <Envelopes />
         </div>
       </div>
     </Layout>
   );
 };
 
-export default DashboardView;
+export default TransactionsView;

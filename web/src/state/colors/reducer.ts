@@ -6,7 +6,7 @@ import { isColorArray, type ColorsState } from './types';
 
 export const getColors = createAsyncThunk(
   'colors/getColors',
-  async () => requestGet('bonebudget/colors'),
+  async () => requestGet('transactions/colors'),
 );
 
 export const initialState: ColorsState = {
