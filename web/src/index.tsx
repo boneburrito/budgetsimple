@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import './styles/index.css';
+import reportWebVitals from './reportWebVitals';
+
 import App from './App';
 import ErrorView from './views/Error';
 import LoginView from './views/Login';
 import PatternsView from './views/Patterns';
 import SignupView from './views/Signup';
-import reportWebVitals from './reportWebVitals';
+import Transactions from './views/Transactions';
+
+import './styles/index.css';
 
 const router = createBrowserRouter([{
   path: '/',
@@ -18,7 +21,11 @@ const router = createBrowserRouter([{
     {
       path: '/patterns',
       element: <PatternsView />
-    }
+    },
+    {
+      path: '/transactions',
+      element: <Transactions />
+    },
   ],
   }, {
     path: '/signup',
