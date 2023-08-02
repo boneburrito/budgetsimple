@@ -1,0 +1,232 @@
+/* Field */
+.field {
+  position: relative;
+}
+
+.field + .field {
+  margin-top: 2rem;
+}
+
+/* Label */
+.label {
+  vertical-align: middle;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--theme-color-fg-alt);
+}
+
+.label[hidden] {
+  position: absolute;
+  display: inline;
+  clip: rect(0px, 0px, 0px, 0px);
+  margin: -1px;
+  padding: 0px;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  border: 0 none;
+  white-space: nowrap;
+}
+
+/* Input */
+.input,
+.textarea {
+  --padding-ver: 0.714286em;
+  --padding-hoz: 0.857143em;
+  padding: var(--padding-ver) var(--padding-hoz);
+  width: 100%;
+  vertical-align: middle;
+  font-size: var(--font-size-md);
+  border: 3px solid var(--theme-color-border);
+  border-radius: var(--border-radius-md);
+  background-color: var(--theme-color-bg);
+  color: var(--theme-color-fg);
+  outline: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--theme-color-grey-600);
+}
+
+.input:focus,
+.textarea:focus {
+  background-color: #fff;
+}
+
+.input:hover,
+.input:focus,
+.textarea:hover,
+.textarea:focus {
+  border-color: var(--theme-color-grey-300);
+}
+
+.input.--bare,
+.textarea.--bare {
+  border-color: var(--theme-color-bg);
+  outline: none;
+}
+
+/* Textarea */
+.textarea {
+  min-height: 3em;
+  resize: none;
+  font-family: inherit;
+}
+
+/* Checkboxes */
+.checkbox {
+  --size: calc(var(--size-16) + 2px);
+  position: absolute;
+  z-index: 2;
+  top: 2px;
+  margin: 0;
+  width: var(--size);
+  height: var(--size);
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox+.label {
+  --size: var(--size-16);
+  position: relative;
+  top: 0;
+  display: inline-block;
+  min-height: var(--size);
+    min-width: var(--size);
+  padding-left: 2em;
+  cursor: pointer;
+}
+
+.checkbox+.label > svg {
+  position: absolute;
+  top: 50%;
+  left: 0.66em;
+  transform: translate(-50%, -50%);
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--theme-color-grey-100);
+}
+
+.checkbox+.label > span[hidden] {
+  padding-left: 0;
+  width: var(--size);
+    height: var(--size);
+  font-size: 0px;
+  vertical-align: top;
+  line-height: 1.2;
+  text-indent: -100%;
+}
+
+.checkbox+.label::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 1px solid var(--theme-color-grey-300);
+    border-radius: var(--border-radius-md);
+  background-color: var(--theme-color-bg);
+  content: "";
+}
+
+.checkbox:checked + .label::before {
+  background-color: var(--theme-color-actions-500);
+    border-color: var(--theme-color-actions-500);
+}
+
+/* Select */
+.select {
+  --padding-ver: 0.714286em;
+  --padding-hoz: 0.857143em;
+  padding: var(--padding-ver) var(--padding-hoz);
+  width: 100%;
+  vertical-align: middle;
+  font-size: var(--font-size-md);
+  border: 1px solid var(--theme-color-border);
+  border-radius: var(--border-radius-md);
+  background-color: var(--theme-color-bg);
+  color: var(--theme-color-fg);
+  outline: none;
+}
+
+.select:hover,
+.select:focus {
+  border-color: var(--theme-color-grey-400);
+}
+
+.select:focus {
+  box-shadow: 0 0 0.1em 0.2em rgba(0, 0, 0, 0.2);
+}
+
+/* Sizes */
+
+.input.--xs, .textarea.--xs {
+  --padding-ver: 0.428571em;
+  --padding-hoz: 0.7142857em;
+  font-size: var(--font-size-sm);
+}
+
+.input.--sm, .textarea.--sm {
+  --padding-ver: 0.714286em;
+  --padding-hoz: 0.857143em;
+  font-size: var(--font-size-sm);
+}
+
+.input.--lg, .textarea.--lg {
+  --padding-ver: 0.714286em;
+  --padding-hoz: 0.857143em;  
+  font-size: var(--font-size-lg);
+}
+
+.input.--compact,
+.textarea.--compact {
+  --padding-ver: 0.428571em;
+  --padding-hoz: 0.7142857em;
+}
+
+/* Mixed */
+.field .label:not([hidden]) + .input,
+.field .label:not([hidden]) + .textarea,
+.field .label:not([hidden]) + .select,
+.field .label:not([hidden]) + .controls {
+  margin-top: var(--spacing-xs);
+}
+
+/* Icons */
+.field .input-icon {
+  position: absolute;
+  bottom: 0.4em;
+  right: 0.4em;
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background-color: var(--theme-color-bg-secondary);
+}
+
+.field .input-icon > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.field .input:has(+ .input-icon) {
+  padding-inline-end: 2.75em;
+}
+
+/* Style variants */
+.input.--pill {
+  --padding-hoz: calc(var(--padding-ver) + 0.5em);
+  border-radius: calc(var(--padding-ver) + 1em);
+}
+
+.input.--inset,
+.textarea.--inset {
+  border-color: transparent;
+  background-color: var(--theme-color-bg-secondary);
+}
+
+.input.--inset + .input-icon {
+  background-color: var(--theme-color-bg);
+}

@@ -4,18 +4,30 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './styles/index.css';
 import App from './App';
-import PatternsView from './views/Patterns';
 import ErrorView from './views/Error';
+import LoginView from './views/Login';
+import PatternsView from './views/Patterns';
+import SignupView from './views/Signup';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([{
   path: '/',
   element: <App />,
-  errorElement: <ErrorView />
-}, {
-  path: '/patterns',
-  element: <PatternsView />
-}]);
+  errorElement: <ErrorView />,
+  children: [
+    {
+      path: '/patterns',
+      element: <PatternsView />
+    }
+  ],
+  }, {
+    path: '/signup',
+    element: <SignupView />
+  }, {
+    path: '/login',
+    element: <LoginView />
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
