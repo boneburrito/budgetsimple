@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import permissions  # authenticated users only
 from rest_framework.response import Response
-from .models import Transaction, Colors
+from .models import Transaction
 from .serializers import TransactionSerializer
 from datetime import datetime
 
