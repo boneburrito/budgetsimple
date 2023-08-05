@@ -9,9 +9,9 @@ import TransactionsList from 'features/Transactions';
 const DashboardView: React.FunctionComponent = () => (
   <Layout>
     <div className="layout-view">
-      <H1>Recent transactions</H1>
+      <H1 heading={2}>Recent transactions</H1>
 
-      <Block offset>
+      <Block offset offsetSize="lg">
         <TransactionsList />
       </Block>
     </div>
