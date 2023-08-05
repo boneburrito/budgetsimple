@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { requestPost, setToken } from 'utils/request';
 
+import { Block, Button, Field, Form, H1, Input, Label } from 'components/ui';
+
 import './index.css';
 
 const Login = React.memo(() => {
@@ -37,29 +39,29 @@ const Login = React.memo(() => {
 
   return (
     <div className="login">
-      <div className="login-card -inset --all --lg">
-        <h1 className="h1">Log in</h1>
+      <Block className="login-card" inset insetSize="lg">
+        <H1>Log in</H1>
 
-        <form className="-offset --lg">
-          <div className="field">
-            <label className="label">Email address</label>
+        <Form offset offsetSize="lg">
+          <Field>
+            <Label>Email address</Label>
             <div className="controls">
-              <input type="text" className="input" ref={emailRef} />
+              <Input type="text" ref={emailRef} />
             </div>
-          </div>
+          </Field>
 
-          <div className="field">
-            <label className="label">Password</label>
+          <Field>
+            <Label>Password</Label>
             <div className="controls">
-              <input type="password" className="input" ref={passwordRef} />
+              <Input type="password" ref={passwordRef} />
             </div>
-          </div>
+          </Field>
 
-          <div className="field">
-            <button className="button --primary" onClick={handleSubmit} type="button">Submit</button>
-          </div>
-        </form>
-      </div>
+          <Field>
+            <Button isPrimary onClick={handleSubmit}>Submit</Button>
+          </Field>
+        </Form>
+      </Block>
     </div>
   );
 });

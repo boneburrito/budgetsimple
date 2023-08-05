@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Block, H1 } from 'components/ui';
+
 import Layout from 'features/Layout';
 
 import Buttons from './components/Buttons';
@@ -23,11 +25,11 @@ const PatternsView = () => {
   return (
     <Layout>
       <div className="layout-view">
-        <h1 className="heading-1">Patterns</h1>
+        <H1>Patterns</H1>
 
-        <div className="-offset --lg -flex --column">
+        <Block isColumn offset offsetSize="lg">
           {SECTIONS.map(({ id, Component }) => <Component key={id} />)}
-        </div>
+        </Block>
       </div>
     </Layout>
   );

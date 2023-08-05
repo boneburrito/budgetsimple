@@ -3,57 +3,85 @@
   position: relative;
 }
 
-.-full-height {
+.-abs {
+  position: absolute;
+}
+
+.-h-full {
   height: 100%;
 }
 
+.-w-full {
+  width: 100%;
+}
+
 /* Alignment */
+.-align.--center { text-align: center; }
 .-align.--end { text-align: end; }
 .-align.--start { text-align: start; }
 .-align.--middle { vertical-align: middle; }
 
 /* Scrolling */
-.-scroll.--none { overflow: hidden; }
-.-scroll.--x { overflow-x: auto; }
-.-scroll.--y { overflow-y: auto; }
+.-scroll-none { overflow: hidden; }
+.-scroll-x { overflow-x: auto; }
+.-scroll-y { overflow-y: auto; }
 
 /* Borders */
-.-border {
-  border: 1px solid var(--theme-color-border);
+.-b {
+  --border-width: 1px;
+  border: var(--border-width) solid var(--forest-theme-color-border);
 }
 
-.-border.--top {
-  border-width: 1px 0 0 0;
+.-b.--b-lg { --border-width: 2px; }
+.-b.--b-xl { --border-width: 4px; }
+
+.-b.--b-top {
+  border-width: var(--border-width) 0 0 0;
+}
+.-b.--b-end {
+  border-top-width: 0;
+  border-inline-end-width: var(--border-width);
+  border-bottom-width: 0;
+  border-inline-start-width: 0;
+}
+.-b.--b-bottom {
+  border-width: 0 0 var(--border-width);
+}
+.-b.--b-start {
+  border-top-width: 0;
+  border-inline-end-width: 0;
+  border-bottom-width: 0;
+  border-inline-start-width: var(--border-width);
 }
 
-.-border.--end {
-  border-width: 0;
-  border-inline-end-width: 1px;
-}
-
-.-border.--bottom {
-  border-width: 0 0 1px;
-}
-
-.-border.--start {
-  border-width: 0;
-  border-inline-start-width: 1px;
-}
-
-.-border.--trailing {
-  border-width: 1px 0 0 0;
-}
-
-.-border.--trailing:first-child {
+.-b.--b-follow:first-child {
   border-top: 0;
 }
 
-.-border.--none {
+.-b.--b-none {
   border: 0;
 }
 
 /* Rounded corners */
-.-rounded { border-radius: var(--border-radius-md); }
-.-rounded.--sm { border-radius: var(--border-radius-sm); }
-.-rounded.--lg { border-radius: var(--border-radius-lg); }
-.-rounded.--xl { border-radius: var(--border-radius-xl); }
+.-rd { border-radius: var(--forest-border-radius-md); }
+.-rd.--rd-sm { border-radius: var(--forest-border-radius-sm); }
+.-rd.--rd-lg { border-radius: var(--forest-border-radius-lg); }
+.-rd.--rd-xl { border-radius: var(--forest-border-radius-xl); }
+
+/* Shadows */
+.-sh { box-shadow: var(--forest-shadow-md); }
+.-sh.--sh-sm { box-shadow: var(--forest-shadow-sm); }
+.-sh.--sh-lg { box-shadow: var(--forest-shadow-lg); }
+
+/* Backgrounds */
+.-bg {
+  background-color: var(--forest-theme-color-bg);
+}
+.-bg.--secondary,
+.-bg-2 {
+  background-color: var(--forest-theme-color-bg-secondary);
+}
+.-bg.--tertiary,
+.-bg-3 {
+  background-color: var(--forest-theme-color-bg-tertiary);
+}

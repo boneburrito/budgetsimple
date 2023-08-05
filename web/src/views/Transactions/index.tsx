@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'state';
 import { getTransactions } from 'state/transactions';
 
+import { Block, H1 } from 'components/ui';
+
 import Layout from 'features/Layout';
 
 const TransactionsView: React.FunctionComponent = () => {
@@ -17,13 +19,13 @@ const TransactionsView: React.FunctionComponent = () => {
   return (
     <Layout>
       <div className="layout-view">
-        <h1>Transactions</h1>
+        <H1>Transactions</H1>
 
-        <div className="-offset">
+        <Block offset>
           <ul>
             {transactions.map((t) => (<li key={t.id}>${t.amount.toFixed(2)} - {t.description}</li>))}
           </ul>
-        </div>
+        </Block>
       </div>
     </Layout>
   );

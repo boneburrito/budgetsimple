@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Block, H1 } from 'components/ui';
+
 import Layout from 'features/Layout';
 
 import TransactionsList from 'features/Transactions';
@@ -7,11 +9,11 @@ import TransactionsList from 'features/Transactions';
 const DashboardView: React.FunctionComponent = () => (
   <Layout>
     <div className="layout-view">
-      <h1>Recent transactions</h1>
+      <H1>Recent transactions</H1>
 
-      <div className="-offset">
+      <Block offset>
         <TransactionsList />
-      </div>
+      </Block>
     </div>
   </Layout>
 );
