@@ -1,37 +1,19 @@
-import React, { useEffect } from 'react';
-
-import { useDispatch, useSelector } from 'state';
-import { getTransactions } from 'state/transactions';
+import React from 'react';
 
 import Layout from 'features/Layout';
-import Envelopes from 'features/Envelopes/OverviewList';
 
-const DashboardView: React.FunctionComponent = () => {
-  const dispatch = useDispatch();
+import TransactionsList from 'features/Transactions';
 
-  useEffect(() => {
-    dispatch(getTransactions());
-  }, [dispatch]);
+const DashboardView: React.FunctionComponent = () => (
+  <Layout>
+    <div className="layout-view">
+      <h1>Recent transactions</h1>
 
-  const transactions = useSelector((state) => state.transactions).transactions;
-
-  return (
-    <Layout>
-      <div className="layout-view">
-        <h1>Envelopes</h1>
-
-        <div className="-offset">
-          <ul>
-            {transactions.map(({ id, description }) => (<li key={id}>{description}</li>))}
-          </ul>
-        </div>
-
-        <div className="-offset">
-          <Envelopes />
-        </div>
+      <div className="-offset">
+        <TransactionsList />
       </div>
-    </Layout>
-  );
-};
+    </div>
+  </Layout>
+);
 
 export default DashboardView;

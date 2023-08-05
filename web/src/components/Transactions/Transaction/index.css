@@ -1,0 +1,21 @@
+.transaction {
+  font-size: 1rem;
+  background-color: var(--theme-color-bg);
+}
+
+.transaction-amount {
+  padding: 0.5em 1em;
+  font-weight: var(--font-weight-bold);
+  background-color: var(--theme-color-primary-400);
+  color: var(--theme-color-primary-800);
+}
+
+/* PENDING state */
+.transaction.--pending {
+  background-color: var(--theme-color-grey-100);
+  color: var(--theme-color-grey-400);
+}
+
+.transaction.--pending .transaction-amount {
+  color: var(--theme-color-primary-700);
+}

@@ -1,7 +1,7 @@
 import type { JsonArray, JsonObject } from 'types/data';
-import type { Transaction } from './types';
+import { isTransactionStatus, isTransactionType, type Transaction } from './types';
 
-import { getBooleanValue, getStringValue, getStringNumberValue } from 'utils/data';
+import { getBooleanValue, getEnumValue, getStringValue, getStringNumberValue } from 'utils/data';
 
 export const getResponseTransaction = (value: JsonObject): Transaction => {
   const transaction: Transaction = {
@@ -9,9 +9,9 @@ export const getResponseTransaction = (value: JsonObject): Transaction => {
     userId: getStringValue(value['id']),
     amount: getStringNumberValue(value['amount']),
     isCredit: getBooleanValue(value['is_credit']),
-    transactionType: getStringValue(value['transaction_type']),
+    transactionType: getEnumValue(value['transaction_type'], isTransactionType, 'UNKNOWN'),
     description: getStringValue(value['description']),
-    status: getStringValue(value['status']),
+    status: getEnumValue(value['status'], isTransactionStatus, 'UNKNOWN'),
     postedDate: getStringValue(value['posted_date']),
     createdAt: getStringValue(value['created_at']),
   };
