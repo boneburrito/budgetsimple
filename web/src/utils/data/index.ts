@@ -30,3 +30,10 @@ export const getStringNumberValue = (value: JsonValue, defaultValue = 0): number
 
   return defaultValue;
 };
+
+// Enums
+export const getEnumValue = <T extends string>(value: JsonValue, typeChecker: ((val: string) => val is T), defaultValue: T): T => {
+  const stringValue = getStringValue(value, '');
+  const enumValue: T = typeChecker(stringValue) ? stringValue : defaultValue;
+  return enumValue;
+};
