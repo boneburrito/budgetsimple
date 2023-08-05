@@ -7,8 +7,6 @@ from .views import (
 
 
 urlpatterns = [
-    path("", TransactionView.as_view(), name="index"),
-    path("colors/", views.colors, name="colors"),
-    path('api/', TransactionView.as_view()),
-    path('api/<str:transaction_id>/', TransactionDetailView.as_view()),
+    path('', TransactionView.as_view(), name='index'),
+    path('<str:transaction_id>/', TransactionDetailView.as_view()),
 ]
