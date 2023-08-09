@@ -1,102 +1,130 @@
-.-flex {
+.-row,
+.-col {
   display: flex;
   flex-direction: row;
-  gap: var(--spacing-md);
+  gap: var(--spacing-fixed-md);
   min-width: 0;
-  min-height: 0;
 }
 
-.-flex.--inline {
-  display: inline-flex;
-}
-
-.-flex.--reverse {
-  flex-direction: row-reverse;
-}
-
-.-flex.--wrap {
-  flex-wrap: wrap;
-}
-
-.-flex.--column {
+.-col {
   flex-direction: column;
   height: 100%;
 }
 
-.-flex.--column.--reverse {
+.-row.--row-inline {
+  display: inline-flex;
+}
+
+.-row.--row-dir-r {
+  flex-direction: row-reverse;
+}
+
+.-row.--row-wrap {
+  flex-wrap: wrap;
+}
+
+.-col.--col-dir-r {
   flex-direction: column-reverse;
 }
 
-.-flex.--center {
-  align-items: center;
-}
-
-.-flex.--baseline {
+.-row.--row-align-b,
+.-col.--col-align-b {
   align-items: baseline;
 }
 
-.-flex.--start {
+.-row.--row-align-c,
+.-col.--col-align-c {
+  align-items: center;
+}
+
+.-row.--row-align-s,
+.-col.--col-align-s {
   align-items: start;
 }
 
-.-flex.--end {
+.-row.--row-align-e,
+.-col.--col-align-e {
   align-items: end;
 }
 
+.-row.--row-just-e,
+.-col.--col-just-e {
+  justify-content: end;
+}
+
+.-row.--row-just-c,
+.-col.--col-just-c {
+  justify-content: center;
+}
+
 /* Gap spacing */
-.-flex.--space-none {
+.-row.--row-gap-n,
+.-col.--col-gap-n {
   gap: 0;
 }
 
-.-flex.--space-xs {
-  gap: var(--spacing-xs);
+.-row.--row-gap-xs,
+.-col.--col-gap-xs {
+  gap: var(--spacing-fixed-xs);
 }
 
-.-flex.--space-sm {
-  gap: var(--spacing-sm);
+.-row.--row-gap-sm,
+.-col.--col-gap-sm {
+  gap: var(--spacing-fixed-sm);
 }
 
-.-flex.--space-lg {
-  gap: var(--spacing-lg);
+.-row.--row-gap-lg,
+.-col.--col-gap-lg {
+  gap: var(--spacing-fixed-lg);
 }
 
-.-flex.--space-xl {
-  gap: var(--spacing-xl);
+.-row.--row-gap-xl,
+.-col.--col-gap-xl {
+  gap: var(--spacing-fixed-xl);
 }
 
-.-flex.--space-x-xs {
-  column-gap: var(--spacing-xs);
+.-row.--row-gap-x-xs,
+.-col.--col-gap-x-xs {
+  column-gap: var(--spacing-fixed-xs);
 }
 
-.-flex.--space-x-sm {
-  column-gap: var(--spacing-sm);
+.-row.--row-gap-x-sm,
+.-col.--col-gap-x-sm {
+  column-gap: var(--spacing-fixed-sm);
 }
 
-.-flex.--space-x-lg {
-  column-gap: var(--spacing-lg);
+.-row.--row-gap-x-lg,
+.-col.--col-gap-x-lg {
+  column-gap: var(--spacing-fixed-lg);
 }
 
-.-flex.--space-x-xl {
-  column-gap: var(--spacing-xl);
+.-row.--row-gap-x-xl,
+.-col.--col-gap-x-xl {
+  column-gap: var(--spacing-fixed-xl);
 }
 
-.-flex.--space-y-xs {
-  row-gap: var(--spacing-xs);
+.-row.--row-gap-y-xs,
+.-col.--col-gap-y-xs {
+  row-gap: var(--spacing-fixed-xs);
 }
 
-.-flex.--space-y-sm {
-  row-gap: var(--spacing-sm);
+.-row.--row-gap-y-sm,
+.-col.--col-gap-y-sm {
+  row-gap: var(--spacing-fixed-sm);
 }
 
-.-flex.--space-y-lg {
-  row-gap: var(--spacing-lg);
+.-row.--row-gap-y-lg,
+.-col.--col-gap-y-lg {
+  row-gap: var(--spacing-fixed-lg);
 }
 
-.-flex.--space-y-xl {
-  row-gap: var(--spacing-xl);
+.-row.--row-gap-y-xl,
+.-col.--col-gap-y-xl {
+  row-gap: var(--spacing-fixed-xl);
 }
 
-.-stretch {
+.-grow {
   flex: 1;
+  min-height: 0;
   min-width: 0;
 }

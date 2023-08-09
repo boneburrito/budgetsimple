@@ -122,5 +122,5 @@
   --theme-color-danger: var(--theme-color-danger-500);
 
   --theme-color-border: var(--theme-color-grey-200);
-  --forest-theme-color-link: var(--theme-color-primary-500);
+  --theme-color-link: var(--theme-color-primary-500);
 }

@@ -1,43 +1,36 @@
-a {
-  text-decoration: none;
+.-t-h1 { font-size: var(--font-size-xxxl); }
+.-t-h2 { font-size: var(--font-size-xxl); }
+.-t-h3 { font-size: var(--font-size-xl); }
+.-t-h4 { font-size: var(--font-size-lg); }
+.-t-h5 { font-size: var(--font-size-md); }
+.-t-h6 { font-size: var(--font-size-sm); }
+
+.-t-h1, .-t-h2, .-t-h3, .-t-h4, .-t-h5, .-t-h6 {
+  font-weight: var(--font-weight-semibold);
 }
 
-p {
-  margin: 0;
-  padding: 0;
-}
+.-t-sm { font-size: var(--font-size-sm); }
+.-t-md { font-size: var(--font-size-md); }
+.-t-lg { font-size: var(--font-size-lg); }
+.-t-xl { font-size: var(--font-size-xl); }
+.-t-xxl { font-size: var(--font-size-xxl); }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0;
-}
+.-t-mono { font-family: var(--font-family-monospace); }
+.-t-serif { font-family: var(--font-family-serif); }
 
-.heading-1 { font-size: var(--font-size-fixed-xxl); }
-.heading-2 { font-size: var(--font-size-fixed-xl); }
-.heading-3 { font-size: var(--font-size-fixed-lg); }
-.heading-4 { font-size: var(--font-size-fixed-md); }
-.heading-5 { font-size: var(--font-size-fixed-sm); }
-.heading-6 { font-size: var(--font-size-fixed-xs); }
-
-.-text-sm { font-size: var(--font-size-sm); }
-.-text-md { font-size: var(--font-size-md); }
-.-text-lg { font-size: var(--font-size-lg); }
-.-text-xl { font-size: var(--font-size-xl); }
-.-text-xxl { font-size: var(--font-size-xxl); }
-
-.-muted {
+.-t-muted {
   color: var(--theme-color-fg-muted);
 }
 
+/* Links */
 .-link {
   color: var(--theme-color-link);
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
 }
 .-link:hover,
 .-link:focus {
   color: var(--theme-color-link-hover);
-  text-decoration: none;
 }
 .-link:active {
   color: var(--theme-color-link-active);
@@ -54,19 +47,23 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--theme-color-link-muted-active);
 }
 
+/* Code blocks */
 .-code {
-  padding: 0.1em 0.33em;
+  padding: 1px 2px;
   font-size: var(--font-size-sm);
-  font-family: var(--font-family-mono);
-  border-radius: var(--border-radius-md);
+  font-family: var(--font-family-monospace);
+  border-radius: var(--border-radius-sm);
   background-color: var(--theme-color-grey-200);
   color: var(--theme-color-grey-800);
 }
 
+/* Paragraphs and long-form copy */
 .-copy, .-p {
-  line-height: 1.6;
+  line-height: var(--line-height-lg);
+  color: var(--theme-color-grey-600);
 }
 
+/* Text truncation */
 .-ellipsis {
   overflow: hidden;
   white-space: nowrap;

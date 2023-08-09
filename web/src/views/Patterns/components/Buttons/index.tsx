@@ -1,9 +1,11 @@
+import { Button } from 'components/ui';
+
 import { PatternsSection, Pattern } from 'views/Patterns/components/Shared';
 
 const ButtonsPatterns = () => {
   return (
     <PatternsSection title="Buttons">
-      <Pattern><button className="button">Button</button></Pattern>
+      <Pattern><Button>Button</Button></Pattern>
     </PatternsSection>
   );
 };

@@ -11,12 +11,20 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-md);
   border-radius: 1em;
-  background-color: var(--theme-color-grey-100);
+  background-color: var(--theme-color-grey-200);
   color: var(--theme-color-grey-600);
 }
 
 .tag > span {
   font-size: 0.8em;
+}
+
+.tag > .icon {
+  line-height: 1px;
+}
+
+.tag > svg {
+  width: 1.1em;
 }
 
 /* Sizes */
@@ -51,12 +59,52 @@
   color: var(--theme-color-primary-fg);
 }
 
-.tag.--secondary {
-  background-color: var(--theme-color-secondary);
-  color: var(--theme-color-secondary-fg);
+.tag.--notify {
+  background-color: var(--theme-color-warning);
+  color: var(--theme-color-warning-fg);
 }
 
 .tag.--danger {
   background-color: var(--theme-color-danger);
   color: var(--theme-color-danger-fg);
+}
+
+.tag.--alpha {
+  background-color: var(--theme-color-tertiary-alpha-200);
+  color: var(--theme-color-tertiary-alpha-700);
+}
+
+.tag.--beta {
+  background-color: var(--theme-color-tertiary-beta-200);
+  color: var(--theme-color-tertiary-beta-700);
+}
+
+.tag.--gamma {
+  background-color: var(--theme-color-tertiary-gamma-200);
+  color: var(--theme-color-tertiary-gamma-700);
+}
+
+.tag.--delta {
+  background-color: var(--theme-color-tertiary-delta-200);
+  color: var(--theme-color-tertiary-delta-700);
+}
+
+.tag.--epsilon {
+  background-color: var(--theme-color-tertiary-epsilon-200);
+  color: var(--theme-color-tertiary-epsilon-700);
+}
+
+.tag.--zeta {
+  background-color: var(--theme-color-tertiary-zeta-200);
+  color: var(--theme-color-tertiary-zeta-700);
+}
+
+.tag.--eta {
+  background-color: var(--theme-color-tertiary-eta-200);
+  color: var(--theme-color-tertiary-eta-700);
+}
+
+.tag.--grey {
+  background-color: var(--theme-color-grey-200);
+    color: var(--theme-color-grey-700);
 }

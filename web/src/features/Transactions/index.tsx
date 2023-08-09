@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'state';
 import { getTransactions } from 'state/transactions';
 
 import Transaction from 'components/Transactions/Transaction';
+import { ListItem } from 'components/ui';
 
 const TransactionsList = React.memo(() => {
   const dispatch = useDispatch();
@@ -15,11 +16,13 @@ const TransactionsList = React.memo(() => {
   const transactions = useSelector((state) => state.transactions).transactions;
 
   const items = useMemo(() => transactions.map((transaction) => (
-    <li key={transaction.id} className="-offset --following"><Transaction transaction={transaction} /></li>
+    <ListItem key={transaction.id} offset offsetFirst={false}>
+      <Transaction transaction={transaction} />
+    </ListItem>
   )), [transactions]);
 
   return (
-    <div className="envelopes"><ul>{items}</ul></div>
+    <div className="transactions"><ul>{items}</ul></div>
   );
 });
 
