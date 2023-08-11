@@ -6,7 +6,7 @@ export interface TransactionDateTimeProps {
   value: Date | number | string;
 }
 
-const TransactionDateTime = React.memo<TransactionDateTimeProps>(({ formatPattern = 'MMM dd, yyyy', value }) => {
+const TransactionDateTime = React.memo<TransactionDateTimeProps>(({ formatPattern = 'dd-MMM', value }) => {
   let dateValue: Date | number = 0;
 
   if (typeof value === 'string') {

@@ -1,6 +1,8 @@
 from django.db import models
 import uuid
+from categories.models import Merchant
 from users.models import User
+
 
 class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -11,7 +13,7 @@ class Transaction(models.Model):
     posted_date = models.DateField()
     status = models.CharField(max_length=50)
     description = models.TextField()
-    # category_id = models.ForeignKey()  # TODO
+    merchant_category_id = models.ForeignKey(Merchant, null=True, on_delete=models.DO_NOTHING)
     # institution_id = models.ForeignKey()  # TODO
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

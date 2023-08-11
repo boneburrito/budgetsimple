@@ -11,6 +11,11 @@ export const getTransactions = createAsyncThunk(
   async () => requestGet('transactions'),
 );
 
+export const getMerchantCategories = createAsyncThunk(
+  'transactions/getMerchantCategories',
+  async () => requestGet('transactions/merchant-categories'),
+);
+
 export const initialState: TransactionsState = {
   transactions: [],
 };

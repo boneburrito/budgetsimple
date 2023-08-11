@@ -9,16 +9,6 @@ from .models import Transaction
 from .serializers import TransactionSerializer
 from datetime import datetime
 
-
-def index(request):
-    return HttpResponse("Counting them bones")
-
-
-def colors(request):
-    colors = Colors.objects.all()
-    return JsonResponse(list(colors.values()), safe=False)
-
-
 class TransactionView(APIView):
     # add permission to check if user is authenticated
     authentication_classes = [BasicAuthentication, TokenAuthentication]
@@ -28,7 +18,7 @@ class TransactionView(APIView):
         """
         List all the transaction items for a given requested user
         """
-        transactions = Transaction.objects.filter(user_id=request.user.id)
+        transactions = Transaction.objects.filter(user_id=request.user.id).order_by('-posted_date')
         serializer = TransactionSerializer(transactions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

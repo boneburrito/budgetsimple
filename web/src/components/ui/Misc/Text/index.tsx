@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 type TextElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'strong';
 
-export interface TextProps {
+export interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
   align?: 'end' | 'center' | 'start';
   children?: React.ReactNode;
   className?: string;

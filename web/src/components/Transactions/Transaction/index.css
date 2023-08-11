@@ -3,19 +3,36 @@
   background-color: var(--theme-color-bg);
 }
 
+.transaction-desc {
+  max-width: 50%;
+}
+
 .transaction-amount {
   padding: 0.5em 1em;
   font-weight: var(--font-weight-bold);
-  background-color: var(--theme-color-primary-400);
-  color: var(--theme-color-primary-800);
+  background-color: var(--theme-color-danger-200);
+  color: var(--theme-color-danger-800);
+  filter: brightness(0.85);
+}
+
+/* DEBIT vs CREDIT state */
+.transaction.--credit .transaction-amount {
+  background-color: var(--theme-color-primary-300);
 }
 
 /* PENDING state */
 .transaction.--pending {
-  background-color: var(--theme-color-grey-100);
+  background-color: #f0f0f0;
   color: var(--theme-color-grey-400);
+  
 }
 
 .transaction.--pending .transaction-amount {
-  color: var(--theme-color-primary-700);
+  background-color: var(--theme-color-danger-100);
+  color: var(--theme-color-danger-600);
+}
+
+.transaction.--pending.--credit .transaction-amount {
+  background-color: var(--theme-color-primary-200);
+  color: var(--theme-color-primary-600);
 }

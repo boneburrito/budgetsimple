@@ -8,5 +8,5 @@ from .views import (
 
 urlpatterns = [
     path('', TransactionView.as_view(), name='index'),
-    path('<str:transaction_id>/', TransactionDetailView.as_view()),
+    path('<str:transaction_id>/', TransactionDetailView.as_view())
 ]
