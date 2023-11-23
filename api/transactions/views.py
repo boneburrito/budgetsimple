@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.views.generic import TemplateView
 from rest_framework.authentication import BasicAuthentication, TokenAuthentication
 from rest_framework.views import APIView
 from rest_framework import status
@@ -8,6 +9,7 @@ from rest_framework.response import Response
 from .models import Transaction
 from .serializers import TransactionSerializer
 from datetime import datetime
+from ofxparse import OfxParser
 
 
 def index(request):
@@ -32,7 +34,6 @@ class TransactionView(APIView):
         serializer = TransactionSerializer(transactions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
     def post(self, request, *args, **kwargs):
         """
         Create the transactions with given transaction data
@@ -42,9 +43,10 @@ class TransactionView(APIView):
             'is_credit': request.data.get('is_credit'),
             'amount': request.data.get('amount'),
             'transaction_type': request.data.get('transaction_type'),
-            'status': request.data.get('status'),
+            'memo': request.data.get('memo'),
             'user_id': request.user.id,
-            'posted_date': datetime.now().date()
+            'posted_date': datetime.now().date(),
+            'mcc': request.data.get('mcc')
         }
         serializer = TransactionSerializer(data=data)
         if serializer.is_valid():
@@ -97,9 +99,10 @@ class TransactionDetailView(APIView):
             'is_credit': request.data.get('is_credit'),
             'amount': request.data.get('amount'),
             'transaction_type': request.data.get('transaction_type'),
-            'status': request.data.get('status'),
+            'memo': request.data.get('memo'),
             'user_id': request.user.id,
-            'posted_date': request.data.get('posted_date')
+            'posted_date': request.data.get('posted_date'),
+            'mcc': request.data.get('mcc')
         }
         serializer = TransactionSerializer(instance=transaction_instance, data=data, partial=True)
         if serializer.is_valid():
@@ -123,3 +126,35 @@ class TransactionDetailView(APIView):
             {"res": "Transaction deleted!"},
             status=status.HTTP_200_OK
         )
+
+
+class OfxTransactionUpload(TemplateView):
+    template_name = 'ofx_transaction_upload.html'
+
+    def post(self, request):
+        context = {
+            'message': []
+        }
+
+        ofx_file = request.FILES['ofx_file']
+        with open(ofx_file) as f:
+            ofx = OfxParser.parse(f)
+
+        account = ofx.account
+        statement = account.statement
+
+        for transaction in statement.transaction:
+            try:
+                Transaction.objects.create(
+                    transaction_type=transaction.type,
+                    description=transaction.payee,
+                    amount=transaction.amount,
+                    posted_date=transaction.date,
+                    memo=transaction.memo,
+                    mcc=transaction.mcc
+                )
+
+            except Exception as e:
+                context['exceptions_raised'] = e
+
+        return render(request, self.template_name, context)

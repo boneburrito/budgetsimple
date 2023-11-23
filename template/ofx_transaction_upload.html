@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<link rel="stylesheet" href="{% static 'app.css' %}">
+<div class="custom-file mb-4">
+    <div class="header">
+        <h1>OFX Uploader</h1>
+    </div>
+
+    <form id="example-form1" action="." method="post" enctype="multipart/form-data">{% csrf_token %}
+        <label for="images" class="drop-container">
+            <span class="drop-title">Drop files here</span>
+            or
+            <input type="file" class="custom-file-input" id="customFile" name="ofx" required accept=".ofx" size="60">
+        </label>
+    <div>
+        <div align="center">
+            <input type="submit" class="button" value="Submit">
+        </div>
+    </div>
+    </form>
+</div>
