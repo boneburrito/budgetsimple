@@ -12,7 +12,8 @@ class Transaction(models.Model):
     posted_date = models.DateField()
     memo = models.CharField(max_length=50)
     description = models.TextField()
-    mcc = models.IntegerField(null=True, blank=True)
+    # mcc = models.IntegerField(null=True, blank=True)
+    mcc = models.TextField(null=True, blank=True)
     # category_id = models.ForeignKey()  # TODO
     # institution_id = models.ForeignKey()  # TODO
     created_at = models.DateTimeField(auto_now_add=True)

@@ -10,6 +10,7 @@ from .models import Transaction
 from .serializers import TransactionSerializer
 from datetime import datetime
 from ofxparse import OfxParser
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def index(request):
@@ -128,24 +129,32 @@ class TransactionDetailView(APIView):
         )
 
 
-class OfxTransactionUpload(TemplateView):
+class OfxTransactionUpload(LoginRequiredMixin, TemplateView):
+
     template_name = 'ofx_transaction_upload.html'
 
     def post(self, request):
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        if request.user.is_authenticated:
+            print("auth")
+        else:
+            print("not auth!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
         context = {
             'message': []
         }
 
         ofx_file = request.FILES['ofx_file']
-        with open(ofx_file) as f:
-            ofx = OfxParser.parse(f)
+        ofx = OfxParser.parse(ofx_file)
 
         account = ofx.account
         statement = account.statement
 
-        for transaction in statement.transaction:
+        for transaction in statement.transactions:
             try:
-                Transaction.objects.create(
+                txn = Transaction.objects.create(
+                    user_id_id=request.user.id,
                     transaction_type=transaction.type,
                     description=transaction.payee,
                     amount=transaction.amount,
@@ -153,8 +162,11 @@ class OfxTransactionUpload(TemplateView):
                     memo=transaction.memo,
                     mcc=transaction.mcc
                 )
+                print(txn)
+                txn.save()
 
             except Exception as e:
+                print(e)
                 context['exceptions_raised'] = e
 
         return render(request, self.template_name, context)
