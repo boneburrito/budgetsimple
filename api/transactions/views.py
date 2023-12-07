@@ -10,7 +10,7 @@ from .models import Transaction
 from .serializers import TransactionSerializer
 from datetime import datetime
 from ofxparse import OfxParser
-from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.renderers import TemplateHTMLRenderer
 
 
 def index(request):
@@ -129,18 +129,27 @@ class TransactionDetailView(APIView):
         )
 
 
-class OfxTransactionUpload(LoginRequiredMixin, TemplateView):
+class OfxTransactionUpload(APIView):
+    # add permission to check if user is authenticated
+    authentication_classes = [BasicAuthentication, TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
+    renderer_classes = [TemplateHTMLRenderer]
     template_name = 'ofx_transaction_upload.html'
 
-    def post(self, request):
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    def get(self, request):
         if request.user.is_authenticated:
-            print("auth")
+            return Response(
+                {"res": "User is authenticated"},
+                status=status.HTTP_200_OK
+            )
         else:
-            print("not auth!")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            return Response(
+                {"res": "User is not authenticated"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
+    def post(self, request):
         context = {
             'message': []
         }
@@ -168,5 +177,9 @@ class OfxTransactionUpload(LoginRequiredMixin, TemplateView):
             except Exception as e:
                 print(e)
                 context['exceptions_raised'] = e
+                return Response(
+                    {"res": "Transaction upload failed."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
 
         return render(request, self.template_name, context)
