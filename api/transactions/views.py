@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.views.generic import TemplateView
 from rest_framework.authentication import BasicAuthentication, TokenAuthentication
 from rest_framework.views import APIView
 from rest_framework import status
@@ -8,6 +9,8 @@ from rest_framework.response import Response
 from .models import Transaction
 from .serializers import TransactionSerializer
 from datetime import datetime
+from ofxparse import OfxParser
+from rest_framework.renderers import TemplateHTMLRenderer
 
 
 def index(request):
@@ -32,7 +35,6 @@ class TransactionView(APIView):
         serializer = TransactionSerializer(transactions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
     def post(self, request, *args, **kwargs):
         """
         Create the transactions with given transaction data
@@ -42,9 +44,10 @@ class TransactionView(APIView):
             'is_credit': request.data.get('is_credit'),
             'amount': request.data.get('amount'),
             'transaction_type': request.data.get('transaction_type'),
-            'status': request.data.get('status'),
+            'memo': request.data.get('memo'),
             'user_id': request.user.id,
-            'posted_date': datetime.now().date()
+            'posted_date': datetime.now().date(),
+            'mcc': request.data.get('mcc')
         }
         serializer = TransactionSerializer(data=data)
         if serializer.is_valid():
@@ -97,9 +100,10 @@ class TransactionDetailView(APIView):
             'is_credit': request.data.get('is_credit'),
             'amount': request.data.get('amount'),
             'transaction_type': request.data.get('transaction_type'),
-            'status': request.data.get('status'),
+            'memo': request.data.get('memo'),
             'user_id': request.user.id,
-            'posted_date': request.data.get('posted_date')
+            'posted_date': request.data.get('posted_date'),
+            'mcc': request.data.get('mcc')
         }
         serializer = TransactionSerializer(instance=transaction_instance, data=data, partial=True)
         if serializer.is_valid():
@@ -123,3 +127,59 @@ class TransactionDetailView(APIView):
             {"res": "Transaction deleted!"},
             status=status.HTTP_200_OK
         )
+
+
+class OfxTransactionUpload(APIView):
+    # add permission to check if user is authenticated
+    authentication_classes = [BasicAuthentication, TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'ofx_transaction_upload.html'
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            return Response(
+                {"res": "User is authenticated"},
+                status=status.HTTP_200_OK
+            )
+        else:
+            return Response(
+                {"res": "User is not authenticated"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    def post(self, request):
+        context = {
+            'message': []
+        }
+
+        ofx_file = request.FILES['ofx_file']
+        ofx = OfxParser.parse(ofx_file)
+
+        account = ofx.account
+        statement = account.statement
+
+        for transaction in statement.transactions:
+            try:
+                txn = Transaction.objects.create(
+                    user_id_id=request.user.id,
+                    transaction_type=transaction.type,
+                    description=transaction.payee,
+                    amount=transaction.amount,
+                    posted_date=transaction.date,
+                    memo=transaction.memo,
+                    mcc=transaction.mcc
+                )
+                print(txn)
+                txn.save()
+
+            except Exception as e:
+                print(e)
+                context['exceptions_raised'] = e
+                return Response(
+                    {"res": "Transaction upload failed."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+        return render(request, self.template_name, context)
