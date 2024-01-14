@@ -71,18 +71,33 @@ export const request = async (optionsMixed: RequestOptions | string): Promise<Re
 }
 
 export const requestGet = async (path: string, params?: RequestOptions['params']) => await request({
+  headers: {
+    'Content-type': 'application/json'
+  },
   method: 'GET',
   params: params,
   url: path
 });
 
 export const requestPost = async (path: string, params?: RequestOptions['params']) => await request({
+  headers: {
+    'Content-type': 'application/json'
+  },
   method: 'POST',
   params: params,
   url: path
 });
 
+export const requestUpload = async (path: string, formData: FormData) => await request({
+  method: 'PUT',
+  formData,
+  url: path
+});
+
 export const requestPut = async (path: string, params?: RequestOptions['params']) => await request({
+  headers: {
+    'Content-type': 'application/json'
+  },
   method: 'PUT',
   params: params,
   url: path

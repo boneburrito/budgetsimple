@@ -10,7 +10,9 @@ from .models import Transaction
 from .serializers import TransactionSerializer
 from datetime import datetime
 from ofxparse import OfxParser
+from rest_framework.parsers import MultiPartParser
 from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework import generics
 
 
 def index(request):
@@ -133,9 +135,7 @@ class OfxTransactionUpload(APIView):
     # add permission to check if user is authenticated
     authentication_classes = [BasicAuthentication, TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
-
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'ofx_transaction_upload.html'
+    parser_classes = [MultiPartParser,]
 
     def get(self, request):
         if request.user.is_authenticated:
@@ -148,6 +148,36 @@ class OfxTransactionUpload(APIView):
                 {"res": "User is not authenticated"},
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+    def put(self, request):
+        file_obj = request.FILES['file']
+        ofx = OfxParser.parse(file_obj)
+
+        account = ofx.account
+        statement = account.statement
+
+        for transaction in statement.transactions:
+            try:
+                txn = Transaction.objects.create(
+                    user_id_id=request.user.id,
+                    transaction_type=transaction.type,
+                    description=transaction.payee,
+                    amount=transaction.amount,
+                    posted_date=transaction.date,
+                    memo=transaction.memo[:50],
+                    mcc=transaction.mcc
+                )
+                print(txn)
+                txn.save()
+
+            except Exception as e:
+                print(e)
+                return Response(
+                    {"res": e},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+        return Response({"res": "File received"}, status=status.HTTP_200_OK)
 
     def post(self, request):
         context = {

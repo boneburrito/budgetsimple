@@ -27,7 +27,10 @@ export interface CacheValue {
 }
 
 export interface RequestOptions {
+  body?: Request['body'];
   expires?: number;
+  formData?: FormData;
+  headers?: Record<string, string>;
   method?: Request['method'];
   params?: { [key in string]: SerializableValue } | null,
   token?: string;
