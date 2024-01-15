@@ -43,7 +43,7 @@ const getOptions = (optionsMixed: RequestOptions | string): RequestOptionsValida
 };
 
 export const request = async (optionsMixed: RequestOptions | string): Promise<ResponseTuple> => {
-  if (!API_SETTINGS.url) throw new Error('API settings aren\'t available');
+  if (!API_SETTINGS.url) throw new Error(`API settings aren't available`);
 
   const options: RequestOptionsValidated = getOptions(optionsMixed);
 
@@ -55,19 +55,7 @@ export const request = async (optionsMixed: RequestOptions | string): Promise<Re
 
   options.url = `${API_SETTINGS.url}/${options.url}${paramsString}`;
 
-  const [data, response] = await cachedXHR(options);
-
-  if (response) {
-    if (response.status >= 500) {
-      throw new Error(`A server error occurred: ${response?.status}`);
-    }
-  
-    if (response.status >= 400) {
-      throw new Error('An user error occurred');
-    }
-  }
-
-  return [data, response];
+  return cachedXHR(options);
 }
 
 export const requestGet = async (path: string, params?: RequestOptions['params']) => await request({

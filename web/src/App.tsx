@@ -22,7 +22,7 @@ function App() {
   return (
     <Provider store={store}>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="*" element={<Dashboard />} />
         <Route path="/transactions" element={<Transactions />} />
       </Routes>
     </Provider>
