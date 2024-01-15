@@ -25,9 +25,10 @@ const ImportModal: React.FunctionComponent<{ onClose?: () => void }> = ({ onClos
     event.preventDefault();
     event.stopPropagation();
 
-    console.log('zzz file dropped', event, event.dataTransfer);
     dispatch(uploadTransactions(event.dataTransfer.files));
-  }, [dispatch]);
+
+    onClose?.();
+  }, [onClose, dispatch]);
 
   const classes = useMemo(() => classNames('import-modal-drop', {
     '--dragging': isOver,

@@ -6,6 +6,11 @@
 .transaction-amount {
   padding: 0.5em 1em;
   font-weight: var(--font-weight-bold);
+  background-color: var(--theme-color-danger-200);
+  color: var(--theme-color-danger-800);
+}
+
+.transaction.--credit .transaction-amount {
   background-color: var(--theme-color-primary-400);
   color: var(--theme-color-primary-800);
 }
@@ -14,8 +19,4 @@
 .transaction.--pending {
   background-color: var(--theme-color-grey-100);
   color: var(--theme-color-grey-400);
-}
-
-.transaction.--pending .transaction-amount {
-  color: var(--theme-color-primary-700);
 }
