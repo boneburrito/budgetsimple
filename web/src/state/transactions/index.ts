@@ -1,1 +1,1 @@
-export { getTransactions } from './reducer';
+export { getTransactions, uploadTransactions } from './reducer';

@@ -2,7 +2,11 @@ import React, { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
-interface LayoutHeaderProps {}
+import { Button } from 'components/ui';
+
+interface LayoutHeaderProps {
+  onImportClick?: () => void;
+}
 
 const MAINNAV_ITEMS = [
   { id: 'home', path: '/', text: 'Home' },
@@ -11,7 +15,7 @@ const MAINNAV_ITEMS = [
   { id: 'patterns', path: '/patterns', text: 'Patterns' }
 ];
 
-const LayoutHeader = React.memo<LayoutHeaderProps>(() => {
+const LayoutHeader = React.memo<LayoutHeaderProps>(({ onImportClick }) => {
   const items = useMemo(() => MAINNAV_ITEMS.map(
     (item) => (
       <li key={item.id} className="layout-header-nav-item">
@@ -21,12 +25,16 @@ const LayoutHeader = React.memo<LayoutHeaderProps>(() => {
   ), []);
 
   return (
-    <div className="layout-header">
-      <nav className="layout-header-nav">
+    <div className="layout-header -row --row-align-c">
+      <nav className="layout-header-nav -grow">
         <ul>
           {items}
         </ul>
       </nav>
+
+      <div className="-in --in-x">
+        <Button onClick={onImportClick} size="xs">Import</Button>
+      </div>
     </div>
   );
 });

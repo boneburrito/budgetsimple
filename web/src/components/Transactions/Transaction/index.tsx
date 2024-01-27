@@ -14,16 +14,23 @@ export interface TransactionProps {
 }
 
 const TransactionComponent = React.memo<TransactionProps>(({ transaction }) => {
+  console.log(transaction);
+
+  const description = useMemo(() => transaction.description.replace(/^WITHDRAWAL /, ''), [transaction]);
+
   const classes = useMemo(() => classNames('transaction', {
+    '--credit': transaction.isCredit,
     '--pending': transaction.status !== 'CLEARED',
   }), [transaction]);
 
   return (
     <Block className={classes} border inset isRounded isRow rowAlign="center">
-      <Block isRow isStretch rowAlign="center">
-        <strong>{transaction.description}</strong>
-        <Tag size="sm">{transaction.transactionType}</Tag>
-        <DateTime value={transaction.postedDate} />
+      <Block isStretch>
+        <strong>{description}</strong>
+        <Block isRow offset offsetSize="xxs" rowGap="xs">
+          <Tag size="sm">{transaction.transactionType}</Tag>
+          <DateTime value={transaction.postedDate} />
+        </Block>
       </Block>
 
       <Block className="transaction-amount" isRounded>${transaction.amount.toFixed(2)}</Block>

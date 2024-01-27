@@ -60,9 +60,10 @@ const cachedRequest = (options: RequestOptionsValidated): Promise<ResponseTuple>
     const info: RequestInit = {
       method: options.method,
       headers: {
-        'Content-type': 'application/json',
         'Authorization': options.token ? `Token ${options.token}` : '',
-      }
+        ...options.headers,
+      },
+      body: options.formData,
     };
 
     if (options.params && (options.method === 'POST' || options.method === 'PUT')) {

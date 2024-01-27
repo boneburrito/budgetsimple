@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+
+import ImportModal from 'features/ImportModal';
 
 import Header from './components/Header';
 
@@ -9,10 +11,17 @@ interface LayoutProps {
 }
 
 const Layout = React.memo<LayoutProps>(({ children }) => {
+  const [showImportModal, setShowImportModal] = useState(false);
+
+  const handleToggleImportModal = useCallback(() => {
+    setShowImportModal((prev) => !prev);
+  }, []);
+
   return (
     <div className="layout">
-      <Header />
+      <Header onImportClick={handleToggleImportModal} />
       <div className="layout-body">{children}</div>
+      {showImportModal && <ImportModal onClose={handleToggleImportModal} />}
     </div>
   );
 });

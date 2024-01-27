@@ -1,0 +1,13 @@
+.import-modal-drop {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 33vh;
+  border-radius: 0.25em;
+  background-color: var(--theme-color-grey-100);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.import-modal-drop.--dragging {
+  background-color: var(--theme-color-grey-200);
+}

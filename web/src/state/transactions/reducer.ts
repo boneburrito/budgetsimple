@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { requestGet } from 'utils/request';
+import { requestGet, requestUpload } from 'utils/request';
 
 import { type TransactionsState } from './types';
 
@@ -9,6 +9,15 @@ import { getResponseTransactions } from './utils';
 export const getTransactions = createAsyncThunk(
   'transactions/getTransactions',
   async () => requestGet('transactions'),
+);
+
+export const uploadTransactions = createAsyncThunk(
+  'transactions/upload',
+  async (files: FileList) => {
+    const data = new FormData();
+    data.append('file', files[0]);
+    return requestUpload('transactions/upload/', data);
+  },
 );
 
 export const initialState: TransactionsState = {
@@ -34,6 +43,17 @@ export const transactionsSlice = createSlice({
     });
 
     builder.addCase(getTransactions.rejected, (state, action) => {
+      return state;
+    });
+
+    builder.addCase(uploadTransactions.fulfilled, (state, action) => {
+      // const [data] = action.payload;
+
+      return state;
+    });
+
+    builder.addCase(uploadTransactions.rejected, (state, action) => {
+      console.log('zzz upload failed', action.error);
       return state;
     });
   },

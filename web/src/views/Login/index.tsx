@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { requestPost, setToken } from 'utils/request';
@@ -8,6 +8,7 @@ import { Block, Button, Field, Form, H1, Input, Label } from 'components/ui';
 import './index.css';
 
 const Login = React.memo(() => {
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -16,11 +17,13 @@ const Login = React.memo(() => {
   useEffect(() => {}, []);
 
   const handleSubmit = useCallback(() => {
-    const email = emailRef.current?.value;
+    setError('');
+
+    const username = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
-    if (email && password) {
-      requestPost('users/api-token-auth/', { username: email, password })
+    if (username && password) {
+      requestPost('users/api-token-auth/', { username, password })
         .then(([data]) => {
           if (data?.type === 'object' && data?.value['token']) {
             const token = data.value['token'];
@@ -29,10 +32,13 @@ const Login = React.memo(() => {
               setToken(token);
               navigate('/');
             }
+          } else {
+            setError('Login failed');
           }
         })
         .catch((error) => {
           console?.error('Error on login', error);
+          setError('Login failed');
         });
     }
   }, [navigate]);
@@ -56,6 +62,10 @@ const Login = React.memo(() => {
               <Input type="password" ref={passwordRef} />
             </div>
           </Field>
+
+          {!!error && (
+            <Field><Label>{error}</Label></Field>
+          )}
 
           <Field>
             <Button isPrimary onClick={handleSubmit}>Submit</Button>
