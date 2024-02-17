@@ -6,11 +6,15 @@ import { getTransactions } from 'state/transactions';
 import Transaction from 'components/Transactions/Transaction';
 import { ListItem } from 'components/ui';
 
-const TransactionsList = React.memo(() => {
+interface TransactionsListProps {
+  limit?: number;
+}
+
+const TransactionsList = React.memo<TransactionsListProps>(({ limit = -1 }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTransactions());
+    dispatch(getTransactions(limit));
   }, [dispatch]);
 
   const transactions = useSelector((state) => state.transactions).transactions;

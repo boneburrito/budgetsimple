@@ -18,13 +18,7 @@ from rest_framework import generics
 def index(request):
     return HttpResponse("Counting them bones")
 
-
-def colors(request):
-    colors = Colors.objects.all()
-    return JsonResponse(list(colors.values()), safe=False)
-
-
-class TransactionView(APIView):
+class TransactionsView(APIView):
     # add permission to check if user is authenticated
     authentication_classes = [BasicAuthentication, TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -33,7 +27,15 @@ class TransactionView(APIView):
         """
         List all the transaction items for a given requested user
         """
-        transactions = Transaction.objects.filter(user_id=request.user.id)
+        first = self.request.query_params['limit']
+        if (first is None):
+            first = 100
+        elif first == '-1':
+            first = 100
+        else:
+            first = int(first)
+
+        transactions = Transaction.objects.filter(user_id=request.user.id)[:first]
         serializer = TransactionSerializer(transactions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
