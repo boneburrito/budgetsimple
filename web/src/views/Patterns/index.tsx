@@ -5,6 +5,7 @@ import { Block, H1 } from 'components/ui';
 import Layout from 'features/Layout';
 
 import Buttons from './components/Buttons';
+import Colors from './components/Colors';
 import Typography from './components/Typography';
 
 import './index.css';
@@ -17,8 +18,8 @@ interface PatternsSection {
 
 const SECTIONS: PatternsSection[] = [
   { id: 'typography', title: 'Typography', Component: Typography },
+  { id: 'colors', title: 'Colors', Component: Colors },
   { id: 'buttons', title: 'Buttons', Component: Buttons },
-  // { id: 'colors', title: 'Colors', Component: null },
 ];
 
 const PatternsView = () => {

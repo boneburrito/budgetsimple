@@ -1,3 +1,14 @@
 .patterns-view {}
 
 .pattern-tag {}
+
+.patterns-color:not(:first-child) {
+}
+
+.patterns-swatch {
+  --color: transparent;
+  height: 2em;
+  width: 10em;
+  border-radius: 0.25em;
+  background-color: var(--color);
+}

@@ -53,7 +53,7 @@ export const transactionsSlice = createSlice({
     });
 
     builder.addCase(uploadTransactions.rejected, (state, action) => {
-      console.log('zzz upload failed', action.error);
+      console?.error('upload failed', action.error);
       return state;
     });
   },
