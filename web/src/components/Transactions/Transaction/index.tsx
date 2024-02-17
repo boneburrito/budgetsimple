@@ -14,8 +14,6 @@ export interface TransactionProps {
 }
 
 const TransactionComponent = React.memo<TransactionProps>(({ transaction }) => {
-  console.log(transaction);
-
   const description = useMemo(() => transaction.description.replace(/^WITHDRAWAL /, ''), [transaction]);
 
   const classes = useMemo(() => classNames('transaction', {
