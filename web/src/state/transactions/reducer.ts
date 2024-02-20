@@ -8,7 +8,7 @@ import { getResponseTransactions } from './utils';
 
 export const getTransactions = createAsyncThunk(
   'transactions/getTransactions',
-  async () => requestGet('transactions'),
+  async (limit?: number) => requestGet(`transactions`, { limit: limit ?? '' }),
 );
 
 export const uploadTransactions = createAsyncThunk(
